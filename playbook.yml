@@ -11,6 +11,15 @@
 
     - name: Install docker
       ansible.builtin.apt:
+        update_cache: yes
         pkg:
-          - docker.io
+          - docker.ce
+          # - docker-compose-plugin
         state: latest
+
+    - name: Run docker-compose
+      community.docker.docker_compose_v2:
+        project_src: ./Docker
+        state: present 
+
+    
