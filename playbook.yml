@@ -1,0 +1,16 @@
+- name : Testing play
+  hosts: myhosts
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+    - name: Print host information
+      ansible.builtin.debug:
+        msg: "Host {{ inventory_hostname }} is reachable with IP {{ ansible_host }}"
+      when: ansible_host is defined
+
+    - name: Install docker
+      ansible.builtin.apt:
+        pkg:
+          - docker.io
+        state: latest
