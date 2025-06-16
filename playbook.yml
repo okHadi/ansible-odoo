@@ -1,5 +1,8 @@
 - name : Testing play
   hosts: myhosts
+  vars:
+    labels:
+      MYIP: "{{ ansible_default_ipv4.address }}"
   tasks:
     - name: Ping my hosts
       ansible.builtin.ping:
@@ -39,5 +42,6 @@
       community.docker.docker_compose_v2:
         project_src: /opt/Docker
         state: present 
+      environment: "{{ labels }}"
 
     
